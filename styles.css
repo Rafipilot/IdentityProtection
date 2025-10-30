@@ -1,42 +1,61 @@
-/* General Stylesheet */
 
 body {
-    margin: 0;
-    
-    font-family: 'Segoe UI', Arial, sans-serif;
-    background: #6550c5;
-    color: #ffffff;
+width: 400px;
+padding: 15px;
+font-family: Arial, sans-serif;
+background-color: blueviolet;
+
+}
+.keyword-item {
+display: flex;
+gap: 8px;
+margin-bottom: 10px;
+align-items: center;
+}
+.keyword-item input {
+flex: 1;
+padding: 5px;
 }
 
-#main_content {
-    padding-left: 5rem;
-    text-align: center;
+#keywordList    {
+    padding-right: 5px;
 }
 
-h1 {
-    font-size: 2.5em;
+.keyword-item button {
+padding: 5px 10px;
+background-color: #ff4444;
+color: white;
+border: none;
+border-radius: 3px;
+cursor: pointer;
 }
-
-h2, h3, h4, h5, h6 {
-    font-weight: 600;
+#addKeyword {
+margin-top: 10px;
+padding: 8px 15px;
+background-color: #4CAF50;
+color: white;
+border: none;
+border-radius: 3px;
+cursor: pointer;
 }
-
-p {
-    
-    margin: 0 0 1em;
-    line-height: 1.6;
+#saveKeywords {
+margin-top: 15px;
+padding: 10px 20px;
+background-color: #2196F3;
+color: white;
+border: none;
+border-radius: 3px;
+cursor: pointer;
+width: 100%;
 }
-a {
-    color: #0984e3;
-    text-decoration: none;
-    transition: color 0.2s;
+#status {
+margin-top: 10px;
+padding: 8px;
+text-align: center;
+border-radius: 3px;
+display: none;
 }
-
-a:hover {
-    color: #636e72;
-    text-decoration: underline;
-}
-
-button { 
-    padding: 10px 20px;
+#status.success {
+background-color: #d4edda;
+color: #155724;
 }

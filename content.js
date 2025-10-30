@@ -1,6 +1,25 @@
 // this script is going to be listing to user keystrokes to detect if they type any sensitive info so we can warn them!
 
-const keywords = {"personal-password":"123456", "personal-email":"rafayel.latif@gmail.com", "api_key":"apikey"}
+let keywords = {};
+
+// Load keywords from chrome.storage on initialization
+chrome.storage.sync.get(['keywords'], (result) => {
+    keywords = result.keywords || {
+      "personal-password": "123456",
+      "personal-email": "example@gmail.com",
+      "api_key": "example_apikey"
+    };
+    console.log("Keywords loaded:", Object.keys(keywords));
+});
+
+// Listen for changes to keywords in storage
+chrome.storage.onChanged.addListener((changes, namespace) => {
+    if (namespace === 'sync' && changes.keywords) {
+        keywords = changes.keywords.newValue || {};
+        console.log("Keywords updated:", Object.keys(keywords));
+    }
+});
+
 function checkIfPassword(typed)  {
     // Rules: if string is more than 8 chars no spaces, includes numbers and capitals then flag
 
@@ -36,13 +55,6 @@ function checkIfEmail(typed) {
 }
 
 function checkIfApiKey(typed) {
-
-    for (const [keyword, value] of Object.entries(keywords)) {
-        if (keyword.toLowerCase().includes("api") && typed.includes(value)) {
-            alert(`Warning: You typed a sensitive keyword - ${keyword}`)
-            return true
-        }
-    }
 
     const prefixRegex = /\b(?:sk-|api_|AIza|AKIA|SG\.)[A-Za-z0-9\-_]{8,}\b/
     if (prefixRegex.test(typed)) {
