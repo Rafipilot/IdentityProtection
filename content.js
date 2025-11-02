@@ -101,3 +101,14 @@ document.addEventListener("keydown", (event) => {
         previously_typed = "" // reset previously typed if we flag sensitive input
     }
 });
+
+document.addEventListener('paste', (event) => {
+    // event.clipboardData contains what was pasted
+    const pastedText = event.clipboardData.getData('text');
+    console.log('User pasted:', pastedText);
+
+    const isPassword = checkIfPassword(pastedText)
+    const isApiKey = checkIfApiKey(pastedText)
+    const isEmail = checkIfEmail(pastedText)
+    
+});
